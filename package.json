@@ -11,6 +11,8 @@
     "@vueuse/core": "^6.3.2",
     "axios": "^0.22.0",
     "echarts": "^5.2.0",
+    "element-plus": "^1.0.2-beta.71",
+    "vite-plugin-style-import": "^1.2.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.11",
     "windicss": "^3.1.7"

@@ -1,1 +1,3 @@
-export const API_LIST = ['http://127.0.0.1']
+export const API_SHOW = 'http://localhost:4000/show'
+
+export const API_PREDICT = 'http://localhost:4000/predict'

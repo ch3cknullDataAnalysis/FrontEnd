@@ -2,34 +2,43 @@ import { EChartsOption } from 'echarts'
 import { IShowResponse } from './data_types'
 
 export function format(input: IShowResponse) {
-  const rawData = input.raw.IRawCityData
-  // const keyName
+  const rawData = input.data
+
+  const series: any[] = rawData.map((s) => {
+    return {
+      name: s.cityName,
+      type: 'line',
+      data: s.raw[1],
+    }
+  })
+
+  const legend: any[] = rawData.map((s) => s.cityName)
+
+  console.log(series)
 
   const options: EChartsOption = {
     title: {
-      text: input.raw.keyName,
+      // text: input.keyName,
     },
     tooltip: {},
     xAxis: {
       // data: rawData.map((s) => s.year),
-      data: rawData[0],
+      data: [2013, 2014, 2015, 2016, 2017, 2018],
+      // data: rawData[0],
     },
     legend: {
-      data: [input.raw.name],
-      // need cityName
+      data: legend,
     },
     yAxis: {},
-    series: [
-      {
-        name: input.raw.name,
-        type: 'line',
-        // data: rawData.map((s) => s.data),
-        data: rawData[1],
-      },
-    ],
+    series: series,
   }
 
-  const statData = input.stat
+  const statData = input.data.map((s) => {
+    return {
+      ...s.stat,
+      city: s.cityName,
+    }
+  })
 
   return {
     options,
