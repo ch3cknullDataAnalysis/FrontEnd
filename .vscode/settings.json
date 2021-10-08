@@ -31,6 +31,9 @@
   ],
   "volar.formatting.printWidth": 80,
   "windicss.sortOnSave": true,
+  "windicss.colorDecoratorsType": "picker",
+  "windicss.enableAttrUtilityCompletion": true,
+  "windicss.enableAttrVariantCompletion": true,
   "cSpell.words": [
     "ASOUL",
     "ASOULCNKI",
@@ -38,6 +41,7 @@
     "bili",
     "bilibili",
     "cisincere",
+    "echarts",
     "rpid",
     "stylelint",
     "vitejs",
@@ -45,5 +49,6 @@
     "vueuse",
     "vuex",
     "windi"
-  ]
+  ],
+  "cSpell.enableFiletypes": ["vue"]
 }
