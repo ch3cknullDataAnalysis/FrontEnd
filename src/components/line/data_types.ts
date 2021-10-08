@@ -5,7 +5,7 @@ type IRawCityData = [number[], number[]]
 export interface IStat {
   sum: number
   mean: number
-  medium: number
+  medi: number
   max: number
   min: number
 }

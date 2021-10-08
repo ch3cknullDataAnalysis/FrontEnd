@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { IShowResponse } from '../components/line/data_types'
 
-const instance = axios.create({})
+const instance = axios.create({
+  timeout: 6000,
+})
 
 instance.interceptors.response.use(
   (res: any) => {

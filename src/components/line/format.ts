@@ -14,8 +14,6 @@ export function format(input: IShowResponse) {
 
   const legend: any[] = rawData.map((s) => s.cityName)
 
-  console.log(series)
-
   const options: EChartsOption = {
     title: {
       // text: input.keyName,

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useTitle } from '@vueuse/core'
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
+import { KEYS } from '../utils/constant'
 import Line from '@/components/line/Line.vue'
 
 onMounted(() => {
@@ -15,14 +16,16 @@ onMounted(() => {
     <div class="left">
       <ul class="space-y-2 py-3">
         <li
-          v-for="i in 10"
+          v-for="i in KEYS"
           text="white"
           class="rounded-md bg-blue-300 p-2 transition hover:(bg-blue-400)"
-        >{{ i }}</li>
+        >
+          <a :href="`#${i.name}`">{{ i.value }}</a>
+        </li>
       </ul>
     </div>
     <div class="right">
-      <Line v-for="i in 3" :key="i" />
+      <Line v-for="i in KEYS" :key="i.value" :name="i.value" :keyName="i.name" />
     </div>
   </div>
   <el-backtop />

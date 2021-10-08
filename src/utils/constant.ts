@@ -1,0 +1,18 @@
+export const KEYS = [
+  { name: 'gdpSum', value: '地区生产总值（亿元）' },
+  { name: 'gdp1', value: '地区生产总值 - 第一产业（亿元）' },
+  { name: 'gdp2', value: '地区生产总值 - 第二产业（亿元）' },
+  { name: 'gdpIndu', value: '地区生产总值 - 工业（亿元）' },
+  { name: 'gdpArch', value: '地区生产总值 - 建筑业（亿元）' },
+  { name: 'gdp3', value: '地区生产总值 - 第三产业（亿元）' },
+  { name: 'gdpTrff', value: '地区生产总值 - 交通运输，仓储和邮政业（亿元）' },
+  { name: 'gdpReta', value: '地区生产总值 - 批发和零售业（亿元）' },
+  { name: 'gdpStay', value: '地区生产总值 - 住宿和餐饮业（亿元）' },
+  { name: 'gdpEco', value: '地区生产总值 - 金融业（亿元）' },
+  { name: 'gdpHouse', value: '地区生产总值 - 房地产业（亿元）' },
+  { name: 'gdpOther', value: '地区生产总值 - 其他服务业（亿元）' },
+  { name: 'gdp1P', value: '第一产业占GDP比重（%）' },
+  { name: 'gdp2P', value: '第二产业占GDP比重（%）' },
+  { name: 'gdp3P', value: '第三产业占GDP比重（%）' },
+  { name: 'gdpPeoMean', value: '人均地区生产总值（元/人）' },
+]

@@ -1,53 +1,61 @@
 <script lang="ts" setup>
-import { init } from 'echarts'
-import { ref, onMounted } from 'vue'
+import { EChartsType, init } from 'echarts'
+import { ref } from 'vue'
 import { useResizeObserver, useIntersectionObserver, useTimeoutFn } from '@vueuse/core'
 import { show } from '../../api'
 import { format } from './format'
 import { PROVINCE } from './constant'
 import { ElSelect } from 'element-plus'
+import { IShowRequest } from './data_types'
 
 const container = ref<HTMLElement>()
 const isLoad = ref(false)
-let chart: any
+const chart = ref<EChartsType>()
 const tableData = ref<any[]>([])
-const value = ref<number>()
+const value = ref<number[]>()
 
+const props = defineProps<{
+  name: string,
+  keyName: string
+}>()
 
-onMounted(async () => {
+useIntersectionObserver(container, async ([{ isIntersecting }]) => {
+  if (!isLoad.value && isIntersecting) {
+    useTimeoutFn(() => {
+      const table = init(container.value!)
+      useResizeObserver(container.value, () => {
+        table.resize()
+      })
+      chart.value = table
+      update()
+    }, 0)
+    isLoad.value = true
+  }
+})
 
-  const res = await show({
-    cityNum: '110000',
-    key: 'gdpSum'
-  })
+async function update (params: IShowRequest = { cityNum: '110000', key: props.keyName }) {
+  const res = await show(params)
   const response = format(res)
   const options = response.options
   tableData.value = response.statData
+  chart.value!.setOption(options)
+}
 
-  useIntersectionObserver(container!.value, () => {
-    if (isLoad.value) return
-    useTimeoutFn(() => {
-      chart = init(container.value!)
-      chart.setOption(options)
-      useResizeObserver(container.value, () => {
-        chart.resize()
-      })
-    }, 400)
-    isLoad.value = true
-  })
-})
+async function onClose () {
+  await update({ cityNum: value.value?.toString() || '', key: '' })
+}
 
 </script>
 
 <template>
-  <div class="main">
-    <span class="pl-2 text-2xl text-gray-600 float-left">aaa</span>
+  <div class="main" :name="props.keyName">
+    <span class="text-xl pl-2 text-gray-600 float-left">{{ props.name }}</span>
     <el-select
       v-model="value"
-      class="w-140px float-right"
+      class="w-180px float-right"
       multiple
       filterable
-      small
+      collapse-tags
       placeholder="省份名称"
     >
       <el-option
@@ -57,6 +65,7 @@ onMounted(async () => {
         :value="item.value"
       ></el-option>
     </el-select>
+    <el-button @click="onClose" class="mr-3 float-right">Update</el-button>
     <div class="h-[400px] mt-16" ref="container">
       <div
         text="center xl gray-400"
@@ -68,7 +77,7 @@ onMounted(async () => {
       <el-table-column prop="max" label="Max" />
       <el-table-column prop="min" label="Min" />
       <el-table-column prop="max" label="Mean" />
-      <el-table-column prop="median" label="Median" />
+      <el-table-column prop="medi" label="Median" />
       <el-table-column prop="sum" label="Sum" />
     </el-table>
   </div>
