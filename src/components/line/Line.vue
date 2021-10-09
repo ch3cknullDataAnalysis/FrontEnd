@@ -8,16 +8,21 @@ import { PROVINCE } from './constant'
 import { ElSelect } from 'element-plus'
 import { IShowRequest } from './data_types'
 
+const props = withDefaults(defineProps<{
+  name: string,
+  keyName: string,
+  multi?: boolean
+}>(), {
+  multi: false
+})
+
 const container = ref<HTMLElement>()
 const isLoad = ref(false)
 const chart = ref<EChartsType>()
 const tableData = ref<any[]>([])
-const value = ref<number[]>()
+const value = props.multi ? ref<string[]>(['110000']) : ref<string>('110000')
 
-const props = defineProps<{
-  name: string,
-  keyName: string
-}>()
+
 
 useIntersectionObserver(container, async ([{ isIntersecting }]) => {
   if (!isLoad.value && isIntersecting) {
@@ -53,7 +58,7 @@ async function onClose () {
     <el-select
       v-model="value"
       class="w-180px float-right"
-      multiple
+      :multiple="props.multi"
       filterable
       collapse-tags
       placeholder="省份名称"
@@ -65,8 +70,8 @@ async function onClose () {
         :value="item.value"
       ></el-option>
     </el-select>
-    <el-button @click="onClose" class="mr-3 float-right">Update</el-button>
-    <div class="h-[400px] mt-16" ref="container">
+    <el-button @click="onClose" class="mr-3 float-right">更新</el-button>
+    <div class="h-[330px] mt-16" ref="container">
       <div
         text="center xl gray-400"
         class="font-bold tracking-widest top-2/5 relative"

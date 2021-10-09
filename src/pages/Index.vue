@@ -11,35 +11,31 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="navbar">NavBar</div>
-  <div class="main-content">
+  <div class="overflow-hidden">
     <div class="left">
       <ul class="space-y-2 py-3">
         <li
           v-for="i in KEYS"
-          text="white"
-          class="rounded-md bg-blue-300 p-2 transition hover:(bg-blue-400)"
+          class="rounded-md bg-hex-4ba3eb shadow-inner text-white p-2 transition hover:(bg-blue-400)"
         >
           <a :href="`#${i.name}`">{{ i.value }}</a>
         </li>
       </ul>
     </div>
     <div class="right">
-      <Line v-for="i in KEYS" :key="i.value" :name="i.value" :keyName="i.name" />
+      <Line
+        v-for="i in KEYS"
+        :key="i.value"
+        :name="i.value"
+        :keyName="i.name"
+        :multi="true"
+      />
     </div>
   </div>
   <el-backtop />
 </template>
 
 <style lang="css" scoped>
-.navbar {
-  @apply bg-blue-400 shadow text-white p-2 px-3 text-2xl;
-}
-
-.main-content {
-  @apply overflow-hidden;
-}
-
 .left,
 .right {
   @apply w-full inline-block;
