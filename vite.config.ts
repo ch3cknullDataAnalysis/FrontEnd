@@ -4,6 +4,7 @@ import WindiCSS from 'vite-plugin-windicss'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import styleImport from 'vite-plugin-style-import'
+import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,6 +29,62 @@ export default defineConfig({
         },
       ],
     }),
+    VitePWA({
+      base: '/',
+      registerType: 'autoUpdate',
+      mode: 'development',
+      includeAssets: ['/favicon.ico', 'robots.txt'],
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/116\.62\.232\.127:4000\/.*/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'project-static-cache',
+              expiration: {
+                maxEntries: 5,
+                maxAgeSeconds: 60 * 60 * 24,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
+      },
+      manifest: {
+        name: 'Project',
+        short_name: 'project',
+        background_color: '#FFFFFF',
+        theme_color: '#FFFFFF',
+        description: '',
+        lang: 'zh-Hans-CN',
+        start_url: '/',
+        icons: [
+          {
+            src: 'pwa/pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa/pwa-256x256.png',
+            sizes: '256x256',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
+      },
+    }),
   ],
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
@@ -37,8 +94,8 @@ export default defineConfig({
       allow: ['..'],
     },
     proxy: {
-      '/dataAnalycs': {
-        target: 'http://10.10.10.109:8080/',
+      '/data': {
+        target: 'http://116.62.232.127:4000/data/',
         changeOrigin: true,
       },
     },

@@ -4,11 +4,11 @@ defineProps<{ tableData: any }>()
 
 <template>
   <el-table class="w-full pb-6" :data="tableData" stripe>
-    <el-table-column prop="city" label="City" />
-    <el-table-column prop="max" label="Max" />
-    <el-table-column prop="min" label="Min" />
-    <el-table-column prop="max" label="Mean" />
-    <el-table-column prop="medi" label="Median" />
-    <el-table-column prop="sum" label="Sum" />
+    <el-table-column prop="city" label="城市" />
+    <el-table-column prop="max" label="最大值" />
+    <el-table-column prop="min" label="最小值" />
+    <el-table-column prop="max" label="均值" />
+    <el-table-column prop="medi" label="中位数" />
+    <el-table-column prop="sum" label="总和" />
   </el-table>
 </template>

@@ -51,11 +51,11 @@ async function predictButton () {
 
 <template>
   <div class="main">
-    <div class="header" style="direction: rtl;">
-      <el-button @click="predictButton" class="ml-3 float-right">更新</el-button>
+    <div class="space-x-3 header">
+      <el-button @click="predictButton" class="ml-3">更新</el-button>
       <el-select
         v-model="keyName"
-        class="ml-3 w-180px float-right"
+        class="ml-3 w-140px"
         filterable
         collapse-tags
         placeholder="属性值"
@@ -69,7 +69,7 @@ async function predictButton () {
       </el-select>
       <el-select
         v-model="value"
-        class="w-140px float-right"
+        class="w-100px"
         filterable
         collapse-tags
         placeholder="省份名称"
@@ -95,7 +95,7 @@ async function predictButton () {
 
 <style lang="css" scoped>
 .main {
-  @apply border rounded-xl shadow
-    m-3 p-2 pb-0 overflow-hidden;
+  @apply border rounded-xl shadow m-2
+    min-w-[375px] p-1 pb-0 overflow-hidden;
 }
 </style>

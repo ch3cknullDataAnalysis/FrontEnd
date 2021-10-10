@@ -43,10 +43,10 @@ onMounted(() => {
 
 .left {
   @apply pl-3 hidden;
-  @apply lg:(float-left w-1/5 inline-block) ;
+  @apply xl:(float-left w-1/5 inline-block) ;
 }
 
 .right {
-  @apply min-w-[375px] lg:(float-left w-4/5) ;
+  @apply min-w-[375px] xl:(float-left w-4/5) ;
 }
 </style>

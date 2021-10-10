@@ -1,10 +1,12 @@
 <template>
-  <div class="navbar">
-    <span class="pr-6">Predict</span>
-    <router-link to="/">主页</router-link>
-    <router-link to="/predict">数据预测</router-link>
+  <div class="overflow-hidden">
+    <div class="navbar">
+      <span class="pr-6">Predict</span>
+      <router-link to="/">主页</router-link>
+      <router-link to="/predict">数据预测</router-link>
+    </div>
+    <router-view></router-view>
   </div>
-  <router-view></router-view>
 </template>
 
 <style>

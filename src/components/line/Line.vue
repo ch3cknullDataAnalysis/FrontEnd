@@ -47,25 +47,31 @@ async function update () {
 </script>
 
 <template>
-  <div class="main" :name="props.keyName">
-    <span class="text-xl pl-2 text-gray-600 float-left">{{ props.name }}</span>
-    <el-select
-      v-model="value"
-      class="w-180px float-right"
-      :multiple="props.multi"
-      filterable
-      collapse-tags
-      placeholder="省份名称"
-    >
-      <el-option
-        v-for="item in PROVINCE"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      ></el-option>
-    </el-select>
-    <el-button @click="update" class="mr-3 float-right">更新</el-button>
-    <div class="h-[330px] mt-16" ref="container">
+  <div class="main" :id="props.keyName">
+    <div class="overflow-hidden">
+      <div
+        class="text-lg w-full pb-2 text-gray-600 float-left md:w-auto"
+      >{{ props.name }}</div>
+      <div class="space-x-2 right block md:float-right">
+        <el-select
+          v-model="value"
+          class="w-180px"
+          :multiple="props.multi"
+          filterable
+          collapse-tags
+          placeholder="省份名称"
+        >
+          <el-option
+            v-for="item in PROVINCE"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
+        <el-button @click="update" class="mr-3">更新</el-button>
+      </div>
+    </div>
+    <div class="h-[330px]" ref="container">
       <div
         text="center xl gray-400"
         class="font-bold tracking-widest top-2/5 relative"
