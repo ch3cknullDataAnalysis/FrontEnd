@@ -12,7 +12,6 @@ export const KEYS = [
   { name: 'gdpHouse', value: '地区生产总值 - 房地产业（亿元）' },
   { name: 'gdpOther', value: '地区生产总值 - 其他服务业（亿元）' },
   { name: 'gdp1P', value: '第一产业占GDP比重（%）' },
-  { name: 'gdp2P', value: '第二产业占GDP比重（%）' },
   { name: 'gdp3P', value: '第三产业占GDP比重（%）' },
   { name: 'gdpPeoMean', value: '人均地区生产总值（元/人）' },
 ]

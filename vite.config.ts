@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue'
 import WindiCSS from 'vite-plugin-windicss'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import styleImport from 'vite-plugin-style-import'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
@@ -12,22 +11,7 @@ export default defineConfig({
     vue(),
     WindiCSS(),
     Components({
-      resolvers: [ElementPlusResolver()],
-    }),
-    styleImport({
-      libs: [
-        {
-          libraryName: 'element-plus',
-          esModule: true,
-          ensureStyleFile: true,
-          resolveStyle: (name) => {
-            return `element-plus/lib/theme-chalk/${name}.css`
-          },
-          resolveComponent: (name) => {
-            return `element-plus/lib/${name}`
-          },
-        },
-      ],
+      resolvers: [ElementPlusResolver({ importStyle: false })],
     }),
     VitePWA({
       base: '/',
@@ -99,5 +83,9 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+  },
+  build: {
+    cssCodeSplit: false,
+    brotliSize: true,
   },
 })
